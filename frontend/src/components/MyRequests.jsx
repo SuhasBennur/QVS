@@ -2,25 +2,24 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Table, Button, Card } from "react-bootstrap";
 
-function MyRequests({ user_id }) {
+function MyRequests({ user_id, activeKey}) {
   const [forms, setForms] = useState([]);
   const [selectedForm, setSelectedForm] = useState(null);
 
-  // Fetch forms for the logged-in user
-  useEffect(() => {
-  const fetchForms = async () => {
-    try {
-      const res = await axios.get(`http://127.0.0.1:8000/forms/${user_id}`);
-      setForms(res.data);
-    } catch (err) {
-      console.error("Error fetching forms:", err);
-    }
-  };
-  if (user_id) {
-    fetchForms();
-  }
-}, [user_id]);
+     const fetchForms = async () => {
+      try {
+        const res = await axios.get(`http://localhost:8000/forms/${user_id}`);
+        setForms(res.data);
+      } catch (err) {
+        console.error("Error fetching forms:", err);
+      }
+    };
 
+  useEffect(() => {
+    if (activeKey === "my_requests_tab" && user_id) {
+      fetchForms();
+    }
+  }, [activeKey, user_id]);
 
   const handleFormClick = (form) => {
     setSelectedForm(form);
@@ -64,13 +63,12 @@ function MyRequests({ user_id }) {
                         <td>{form.Location}</td>
                         <td>
                           <span
-                            className={`badge ${
-                              form.Status === "Approved"
+                            className={`badge ${form.Status === "Approved"
                                 ? "bg-success"
                                 : form.Status === "Rejected"
-                                ? "bg-danger"
-                                : "bg-warning text-dark"
-                            }`}
+                                  ? "bg-danger"
+                                  : "bg-warning text-dark"
+                              }`}
                           >
                             {form.Status || "Pending"}
                           </span>

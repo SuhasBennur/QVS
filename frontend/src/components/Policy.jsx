@@ -7,7 +7,7 @@ function Policy() {
         <div className="card-body p-5">
           <h2 className="text-center text-primary mb-4">Our Policies</h2>
           <p className="lead text-center mb-5">
-            QualVerify is committed to maintaining the highest standards of data
+            QVS is committed to maintaining the highest standards of data
             security, compliance, and ethical responsibility. These policies
             outline how we operate and safeguard the interests of all
             stakeholders.
@@ -33,7 +33,7 @@ function Policy() {
             <h4 className="text-secondary">2. Compliance</h4>
             <ul className="list-group list-group-flush">
               <li className="list-group-item">
-                QualVerify adheres to international oil industry regulations and
+                QVS adheres to international oil industry regulations and
                 environmental standards.
               </li>
               <li className="list-group-item">
@@ -80,7 +80,7 @@ function Policy() {
             <h4 className="text-secondary">5. Ethical Responsibility</h4>
             <ul className="list-group list-group-flush">
               <li className="list-group-item">
-                QualVerify promotes sustainable oil production practices.
+                QVS promotes sustainable oil production practices.
               </li>
               <li className="list-group-item">
                 Worker safety and environmental protection are prioritized.

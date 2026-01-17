@@ -8,10 +8,10 @@ import AppNavbar from './components/Navbar';
 // --------------
 function App() {
   const [page, setPage] = useState('login');
-
+  const isLoggedIn = !!localStorage.getItem("userId");
   return (
     <>
-      <AppNavbar setPage={setPage} />
+      <AppNavbar setPage={setPage} page={page} isLoggedIn={isLoggedIn}  />
       {page === 'login' && <Login setPage={setPage} />}
       {page === 'register' && <Register setPage={setPage} />}
       {page === 'home' && <Home setPage={setPage} />}

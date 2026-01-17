@@ -23,7 +23,7 @@ function Login({ setPage }) {
         <input className="form-control my-2" placeholder="Username" onChange={e => setUsername(e.target.value)} />
         <input type="password" className="form-control my-2" placeholder="Password" onChange={e => setPassword(e.target.value)} />
         <button className="btn btn-primary w-100" onClick={handleLogin}>Login</button>
-        <button className="btn btn-link w-100 mt-2" onClick={() => setPage('register')}>Register</button>
+        <label> Don't you have an account? Please{" "} <span style={{ color: "blue", cursor: "pointer", textDecoration: "underline" }} onClick={() => setPage("register")} > Register </span> </label>
       </div>
     </div>
   );

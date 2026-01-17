@@ -8,6 +8,8 @@ import random
 
 app = FastAPI()
 
+origins = [ "http://localhost:3000", "http://127.0.0.1:3000", ]
+
 # Allow frontend requests
 app.add_middleware(
     CORSMiddleware,
@@ -171,10 +173,20 @@ def get_user_forms(user_id: int):
     if not os.path.exists(FORMS_EXCEL_FILE):
         return []
     df = pd.read_excel(FORMS_EXCEL_FILE)
+
+    # Normalize headers
+    df.columns = df.columns.str.strip()
+
     if "UserID" not in df.columns:
         return []
-    df["UserID"] = df["UserID"].astype(int) # ensure int type
-    df = df.where(pd.notnull(df), None) 
+
+    # Ensure UserID is int
+    df["UserID"] = df["UserID"].astype(int)
+
+    # Replace NaN with None (JSON serializable as null)
+    df = df.fillna("")
+
     user_forms = df[df["UserID"] == int(user_id)]
     return user_forms.to_dict(orient="records")
+
 
